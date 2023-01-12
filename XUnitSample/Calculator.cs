@@ -21,7 +21,7 @@ namespace XUnitSample
         }
 
         public decimal Subtract(int number1, int number2)
-        {
+        {           
             var result = number1 - number2;
 
             return result;
@@ -29,14 +29,29 @@ namespace XUnitSample
 
         public decimal Divide(int number1, int number2)
         {
-            //if (number2 == 0)
-            //{
-            //    throw new Exception("Not allow divide by 0");
-            //}
+            if (number2 == 0)
+            {
+                throw new Exception("Not allow divide by 0");
+            }
 
             var result = (decimal)number1 / (decimal)number2;
 
             return result;
+        }
+
+        public bool AddUser(string userName)
+        {
+            if (userName.Length > 5)
+            {
+                return false;
+            }
+
+            if (userName.Contains("ą"))
+            {
+                return false;
+            }
+
+            return true;
         }
     }
 }

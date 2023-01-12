@@ -44,7 +44,8 @@ namespace Calculator.Test
         [Theory]
         [InlineData(1, 2, 0.5)]
         [InlineData(-10, -2, 5)]
-        [InlineData(-2, 1, -2)]        
+        [InlineData(-2, 1, -2)]
+        [InlineData(1, -1, -1)]        
         public void CanDivide_Theory(int number1, int number2, double expected)
         {
             var calculator = new XUnitSample.Calculator();
@@ -62,7 +63,20 @@ namespace Calculator.Test
         {
             var calculator = new XUnitSample.Calculator();
 
-            Assert.Throws<DivideByZeroException>(() => calculator.Divide(number1, number2));
+            Assert.Throws<Exception>(() => calculator.Divide(number1, number2));
+        }
+
+        [Theory]
+        [InlineData("An¹", false)]
+        [InlineData("Jan", true)]
+        [InlineData("Janusz", false)]
+        public void CanUserBeAdded_Theory(string user, bool expected)
+        {
+            var calculator = new XUnitSample.Calculator();
+
+            var result = calculator.AddUser(user);
+
+            Assert.Equal(expected, result);            
         }
     }
 }
